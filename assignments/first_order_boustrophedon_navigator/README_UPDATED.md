@@ -39,7 +39,7 @@ self.Kd_angular = 0.1  # Derivative gain for angular velocity
 ```
 This results in a simulation where the robot has a high cross track error, as shown below.
 
-<img width="500" alt="Original Simulation Pattern" src="originalsimulationplot.png" />
+<img width="700" alt="Original Simulation Pattern" src="originalsimulationplot.png" />
 
 
 
@@ -51,9 +51,9 @@ This results in a simulation where the robot has a high cross track error, as sh
 self.spacing = 0.5     # Spacing between lines
 ```
 
-### 3. Analysis and Documentation (20 points)
+### 2. Analysis and Documentation
 
-#### 3.1 Tuning Methodology
+#### 2.1 Tuning Methodology
 
 The controller was tuned manually through trial and error to understand the impact of each Kp_linear, Kd_linear, Kp_angular, and Kd_angular parameter. The values initially started out small and were gradually increased to understand the impact of the parameter on performance. 
 
@@ -68,7 +68,7 @@ However, there is some overlap in the pattern at this point. It is then needed t
 Then the final Kd_angular term is updated to reduce some of the wiggling in the cornering at the waypoints. If this value is large it will cause lots of spinning and deviation from the pattern. Adjusting this to be a smaller value reduces the wiggling within the cornering and makes the chang in direction smoother.
 
 
-##### 3.1.1 Final Parameter Values and Justification
+##### 2.1.1 Final Parameter Values and Justification
 The final parameter gains provided in the controller are as shown below. The process followed aboved created a cross track less than 0.2.
 
 ```python
@@ -80,33 +80,33 @@ self.Kd_angular = 0.01  # Derivative gain for angular velocity
 ```
 The final pattern produced by the robot is shown below with the associated rqt cross track data error.
 
-<img width="500" alt="Turtlesim Pattern" src="finalpattern_with_rqt.png" />
+<img width="700" alt="Turtlesim Pattern" src="finalpattern_with_rqt.png" />
 
 
-#### 3.2 Performance Plots and Metrics
+#### 2.2 Performance Plots and Metrics
 
-##### 3.2.1 Cross-track error over time
+##### 2.2.1 Cross-track error over time
 The resulting plot for the cross track error shows the error in general reaches a maximum value of approximately 0.15.
 
-<img width="500" alt="Cross Track Error" src="cross_track_error.png" />
+<img width="700" alt="Cross Track Error" src="cross_track_error.png" />
 
-##### 3.2.2 Trajectory plot
+##### 2.2.2 Trajectory plot
 The trajectory plot shows the pattern the robot follows, successfully acheving a "lawn-mower" pattern.
 
-<img width="500" alt="Trajectory Plot" src="trajectory.png" />
+<img width="700" alt="Trajectory Plot" src="trajectory.png" />
 
-##### 3.2.3 Velocity profiles
+##### 2.2.3 Velocity profiles
 The robots successfull reaches each of the waypoints and smoothly corners.
 
-<img width="500" alt="Velocity Profiles" src="velocity_profiles.png" />
+<img width="700" alt="Velocity Profiles" src="velocity_profiles.png" />
 
-##### 3.2.4 Performance metrics and analysis
+##### 2.2.4 Performance metrics and analysis
 
-<img width="500" alt="RQT Data" src="rqtplot.png" />
+<img width="700" alt="RQT Data" src="rqtplot.png" />
 
 
 
-#### 3.3 Challenges encountered and solutions
+#### 2.3 Challenges encountered and solutions
 
 In general it is very time consuming to iterate the parameters manually, let the simulation run, and see what the final outcome is. It is also very difficult to tune all the parameters to get an ideal output at the same time.
 
@@ -116,7 +116,7 @@ The embedded rqt plotting tool stuggles to handle more than just one set of data
 
 It is recommended to completed a simulation and open the rqt tool. The parameters of interest can be added and when restarted, usually maintains the parameters. Turning off autoscroling helps with not crashing and closing the turtle sim once all the data is recorded.
 
-#### 3.4 Comparison of different parameter sets
+#### 2.4 Comparison of different parameter sets
 A high derivative gain for angular velocity (Kd_angular) results in unstable behavior. There is a lot of twisting and oscillating.
 
 ```python
@@ -126,7 +126,7 @@ self.Kd_linear = 0.5  # Derivative gain for linear velocity
 self.Kp_angular = 10.0 # Proportional gain for angular velocity
 self.Kd_angular = 0.5  # Derivative gain for angular velocity
 ```
-<img width="500" alt="Velocity Profiles" src="highKdangular.png" />
+<img width="700" alt="Velocity Profiles" src="highKdangular.png" />
 
 A high proportional gain for linear velocity (Kp_linear) results in unstable behavior. It circles the same location repeatedly.
 ```python
@@ -136,7 +136,7 @@ self.Kd_linear = 0.5  # Derivative gain for linear velocity
 self.Kp_angular = 1.0 # Proportional gain for angular velocity
 self.Kd_angular = 0.01  # Derivative gain for angular velocity
 ```
-<img width="500" alt="Velocity Profiles" src="highKplinear.png" />
+<img width="700" alt="Velocity Profiles" src="highKplinear.png" />
 
 
 ## 4 References: 
@@ -196,13 +196,4 @@ Add these topics:
 - /turtle1/cmd_vel/angular/z
 - /cross_track_error
 
-<img width="1385" height="542" alt="image" src="https://github.com/user-attachments/assets/54e15cb9-f60a-48df-b337-2c9c4d54da77" />
-
-
-## Tips for Success
-- Start with low gains and increase gradually
-- Test one parameter at a time
-- Pay attention to both straight-line tracking and cornering
-- Use rqt_plot to visualize performance in real-time
-- Consider the trade-off between speed and accuracy
 
