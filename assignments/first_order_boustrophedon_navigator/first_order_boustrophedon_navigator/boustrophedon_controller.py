@@ -24,9 +24,9 @@ class BoustrophedonController(Node):
                 #('Kp_angular', 1.0),
                 #('Kd_angular', 0.1),
                 ('Kp_linear', 10.0),
-                ('Kd_linear', 0.3),
-                ('Kp_angular', 9.0),
-                ('Kd_angular', 0.01),
+                ('Kd_linear', 0.5), #increasing seems to conserve spacing in the cornering
+                ('Kp_angular', 1.0),#move back to 15 to see impact, when this is too high you get wiggling
+                ('Kd_angular', 0.01), #keeping this small keeps wiggling at bay in corners
                 ('spacing', 0.5)
             ]
         )
